@@ -177,4 +177,4 @@ if(session){
 })
 app.use('/api/', router);
 
-export const handler = serverless(app);
+module.exports.handler = serverless(app);
