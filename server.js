@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose")
 const port = 8000;
-import serverless from 'serverless-http';
+const serverless = require('serverless-http');
 const app = express();
 const router = Router();
 require("dotenv/config");
