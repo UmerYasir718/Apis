@@ -1,9 +1,10 @@
-const express = require('express');
+import express, { Router } from 'express';
 const { OpenAI } = require("openai");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose")
 const port = 8000;
+import serverless from 'serverless-http';
 const app = express();
 require("dotenv/config");
 
