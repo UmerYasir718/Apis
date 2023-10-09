@@ -31,9 +31,9 @@ async function dbConnect() {
 }
 dbConnect()
 
-// const openai = new OpenAI({
-//   apiKey: process.env.Open_AI
-// });
+const openai = new OpenAI({
+  apiKey: process.env.Open_AI
+});
 
 const Post = require('./PostModel/Post')
 const UserData = require('./PostModel/User');
