@@ -6,6 +6,7 @@ const mongoose = require("mongoose")
 const port = 8000;
 import serverless from 'serverless-http';
 const app = express();
+const router = Router();
 require("dotenv/config");
 
 const stripe = require("stripe")(process.env.STRITE_kEY);
@@ -14,7 +15,6 @@ app.use(bodyParser.json());
 // console.log(process.env.API_KEY_DATABASES);
 
 app.use(cors());
-const router = Router();
 const API_KEY = process.env.API_KEY_DATABASES
 async function dbConnect() {
   try {
