@@ -1,4 +1,5 @@
-import express, { Router } from 'express';
+const express = require('express');
+const { Router } = require('express');
 const { OpenAI } = require("openai");
 const bodyParser = require("body-parser");
 const cors = require("cors");
