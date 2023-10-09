@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // console.log(process.env.API_KEY_DATABASES);
 
 app.use(cors());
-
+const router = Router();
 const API_KEY = process.env.API_KEY_DATABASES
 async function dbConnect() {
   try {
@@ -30,13 +30,13 @@ async function dbConnect() {
 dbConnect()
 
 const openai = new OpenAI({
-  apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+  apiKey: process.env.Open_AI
 });
 
 const Post = require('./PostModel/Post')
 const UserData = require('./PostModel/User');
 const { json } = require('body-parser');
-app.post("/user" , async(req, res)=>{
+router.post("/user" , async(req, res)=>{
   const { userEmail,userName } = req.body;
   const {email}=req.query
   const user=await UserData.findOne({email})
@@ -54,7 +54,7 @@ app.post("/user" , async(req, res)=>{
   res.send(userData)
   console.log(userData)}
 })
-app.post("/post", async (req, res) => {
+router.post("/post", async (req, res) => {
   const {email}=req.query
     const checktoken=await UserData.findOne({email})
   if(checktoken.token===0){
@@ -95,9 +95,8 @@ app.post("/post", async (req, res) => {
   }
   }
 })
-
 // // Define a route to retrieve posts from the database
-app.get("/post", async (req, res) => {
+router.get("/post", async (req, res) => {
   try {
     const {email}= req.query;
     if (!email) {
@@ -112,7 +111,7 @@ app.get("/post", async (req, res) => {
   }
 });
 
-app.get("/postdata", async (req, res) => {
+router.get("/postdata", async (req, res) => {
   try {
     const posts = await Post.findById('');
     res.json(posts);
@@ -122,7 +121,7 @@ app.get("/postdata", async (req, res) => {
   }
 });
 
-app.get("/userdata", async (req, res) => {
+router.get("/userdata", async (req, res) => {
   try {
     const {email}= req.query;
     if (!email) {
@@ -138,7 +137,7 @@ app.get("/userdata", async (req, res) => {
   }
 });
 
-app.post("/api/create-checkout-session",async(req,res)=>{
+router.post("/api/create-checkout-session",async(req,res)=>{
     const {user} = req.body;
     // const userData = JSON.parse(user)
     console.log(user)
@@ -174,7 +173,9 @@ if(session){
     res.json({id:session.id})
  
 })
+app.use('/api/', router);
 
-
+export const handler = serverless(app);
 // export default openAiResponse;
-app.listen(port, () => console.log(`Server is started ${port}`))
+// app.listen(port, () => console.log(`Server is started ${port}`))
+app.listen(process.env.PORT)
