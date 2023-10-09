@@ -177,6 +177,3 @@ if(session){
 app.use('/api/', router);
 
 export const handler = serverless(app);
-// export default openAiResponse;
-// app.listen(port, () => console.log(`Server is started ${port}`))
-app.listen(process.env.PORT)
