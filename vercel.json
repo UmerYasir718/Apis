@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "native-server",
+  "name": "ai-blog",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
