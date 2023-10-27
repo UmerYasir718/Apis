@@ -5,9 +5,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose")
 const PORT = 8000;
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const app = express();
-const router = Router();
+// const router = Router();
 require("dotenv/config");
 
 const stripe = require("stripe")(process.env.STRITE_kEY);
@@ -38,7 +38,7 @@ const openai = new OpenAI({
 const Post = require('./PostModel/Post')
 const UserData = require('./PostModel/User');
 const { json } = require('body-parser');
-router.post("/user" , async(req, res)=>{
+app.post("/user" , async(req, res)=>{
   const { userEmail,userName } = req.body;
   const {email}=req.query
   const user=await UserData.findOne({email})
@@ -56,7 +56,7 @@ router.post("/user" , async(req, res)=>{
   res.send(userData)
   console.log(userData)}
 })
-router.post("/post", async (req, res) => {
+app.post("/post", async (req, res) => {
   const {email}=req.query
     const checktoken=await UserData.findOne({email})
   if(checktoken.token===0){
