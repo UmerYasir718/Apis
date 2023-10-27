@@ -98,7 +98,7 @@ router.post("/post", async (req, res) => {
   }
 })
 // // Define a route to retrieve posts from the database
-router.get("/post", async (req, res) => {
+app.get("/post", async (req, res) => {
   try {
     const {email}= req.query;
     if (!email) {
@@ -113,7 +113,7 @@ router.get("/post", async (req, res) => {
   }
 });
 
-router.get("/postdata", async (req, res) => {
+app.get("/postdata", async (req, res) => {
   try {
     const posts = await Post.findById('');
     res.json(posts);
@@ -123,7 +123,7 @@ router.get("/postdata", async (req, res) => {
   }
 });
 
-router.get("/userdata", async (req, res) => {
+app.get("/userdata", async (req, res) => {
   try {
     const {email}= req.query;
     if (!email) {
@@ -139,7 +139,7 @@ router.get("/userdata", async (req, res) => {
   }
 });
 
-router.post("/api/create-checkout-session",async(req,res)=>{
+app.post("/api/create-checkout-session",async(req,res)=>{
     const {user} = req.body;
     // const userData = JSON.parse(user)
     console.log(user)
@@ -175,6 +175,9 @@ if(session){
     res.json({id:session.id})
  
 })
-app.use('/api/', router);
+// app.use('/api/', router);
 
-module.exports.handler = serverless(app);
+app.listen(port ,()=>{
+  console.log(`Server Is Running on ${port}`)
+})
+// module.exports.handler = serverless(app);

@@ -1,12 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
- "scripts": {
-  "start": "NODE_ENV=development node src/server.js",
-  "build": "NODE_ENV=production node src/server.js"
-},
+  "scripts": {
+    "devStart": "nodemon server.js",
+    "build": "server.js",
+    "start": "node server.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,5 +24,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "description": ""
 }
