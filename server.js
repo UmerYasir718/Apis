@@ -4,7 +4,7 @@ const { OpenAI } = require("openai");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose")
-const port = 8000;
+const PORT = 8000;
 const serverless = require('serverless-http');
 const app = express();
 const router = Router();
@@ -177,7 +177,7 @@ if(session){
 })
 // app.use('/api/', router);
 
-app.listen(port ,()=>{
-  console.log(`Server Is Running on ${port}`)
+app.listen(PORT ,()=>{
+  console.log(`Server Is Running on ${PORT}`)
 })
 // module.exports.handler = serverless(app);
